@@ -10,7 +10,10 @@ const reactLifecycles = singleSpaReact({
   domElementGetter,
 });
 
+let element;
+
 export function bootstrap(props) {
+  console.log(props)
   return reactLifecycles.bootstrap(props);
 }
 
@@ -19,17 +22,22 @@ export function mount(props) {
 }
 
 export function unmount(props) {
+  console.log(props)
   return reactLifecycles.unmount(props);
 }
 
 function domElementGetter() {
-  // Make sure there is a div for us to render into
-  let el = document.getElementById('app1');
-  if (!el) {
-    el = document.createElement('div');
-    el.id = 'app1';
-    document.body.appendChild(el);
-  }
 
-  return el;
+  if (element) {
+    return element;
+  } else {
+    // Make sure there is a div for us to render into
+    let el = document.getElementById('app1');
+    if (!el) {
+      el = document.createElement('div');
+      el.id = 'app1';
+      document.body.appendChild(el);
+    }
+    return el;
+  }
 }

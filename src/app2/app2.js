@@ -13,12 +13,16 @@ const ngLifecycles = singleSpaAngular({
   Router,
 })
 
+let element;
+
 export function bootstrap(props) {
   return ngLifecycles.bootstrap(props);
 }
 
 export function mount(props) {
-  return ngLifecycles.mount(props).then(val => {});
+  console.log(props)
+  element = props.customProps.el;
+  return ngLifecycles.mount(props).then(val => { });
 }
 
 export function unmount(props) {
@@ -26,13 +30,18 @@ export function unmount(props) {
 }
 
 function domElementGetter() {
-  // Make sure there is a div for us to render into
-  let el = document.getElementById('app2');
-  if (!el) {
-    el = document.createElement('div');
-    el.id = 'app2';
-    document.body.appendChild(el);
-  }
 
-  return el;
-}
+  if (element) {
+    return element;
+  } else {
+    // Make sure there is a div for us to render into
+    let el = document.getElementById('app1');
+    if (!el) {
+      el = document.createElement('div');
+      el.id = 'app1';
+      document.body.appendChild(el);
+    }
+
+    return el;
+  }
+} 
