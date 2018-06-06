@@ -1,21 +1,24 @@
 import * as singleSpa from 'single-spa';
 
-singleSpa.registerApplication('app-1', () =>
-  import('../app1/app1.js'), pathPrefix('/app1'), { authToken: "DBVE$YTUEWFRJ&TRWVEDFUREGED@#TY5434" });
+//stuff to read
+// https://github.com/CanopyTax/single-spa/issues/123
+
+
+let state = { currentApp: 'app1' }
 
 singleSpa.start();
 
-function pathPrefix(prefix) {
-  return function (location) {
-    return location.pathname.startsWith(`${prefix}`);
-  }
+function isCurrentApp(app) {
+  return (location) => state.currentApp === app
 }
 
-window.openApp2 = () => {
-  if (!singleSpa.getAppNames().includes('app-2')) {
-    singleSpa.registerApplication('app-2', () =>
-      import('../app2/app2.js'), pathPrefix('/app2'), { el: document.getElementById("angular") });
+window.openApp = (appName) => {
+  if (!singleSpa.getAppNames().includes(appName)) {
+
+    singleSpa.registerApplication(appName, () =>
+      import(`../${appName}/index.js`), isCurrentApp(appName), { el: document.getElementById(appName) });
   }
 
-  singleSpaNavigate('/app2')
+  state.currentApp = appName;
+  singleSpa.triggerAppChange();
 }

@@ -13,16 +13,16 @@ const reactLifecycles = singleSpaReact({
 let element;
 
 export function bootstrap(props) {
-  console.log(props)
+  element = props.customProps.el
   return reactLifecycles.bootstrap(props);
 }
 
 export function mount(props) {
+  element = props.customProps.el
   return reactLifecycles.mount(props);
 }
 
 export function unmount(props) {
-  console.log(props)
   return reactLifecycles.unmount(props);
 }
 

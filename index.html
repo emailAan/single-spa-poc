@@ -48,27 +48,37 @@
       text-decoration: none;
       color: white;
     }
+
+    #content {
+      position: absolute;
+      top: 80px;
+      width:100%;
+    }
   </style>
   <div class="navbar">
     <ul>
-      <a onclick="singleSpaNavigate('/app1')">
+      <a onclick="openApp('app1')">
         <li>
           App 1
         </li>
       </a>
-      <a onclick="singleSpaNavigate('/app2')">
+      <a onclick="openApp ('app2')">
         <li>
           App 2
         </li>
       </a>
-      <a onclick="openApp2()">
+      <a onclick="openApp('app3')">
         <li>
-          App 2
+          App 3
         </li>
       </a>
     </ul>
   </div>
-  <div style="border:solid 1px black;" id="angular"></div>
+  <div id="content">
+    <div style="margin:20px;padding:20px;border:solid 5px green;" id="app1"></div>
+    <div style="margin:20px;padding:20px;border:solid 5px blue;" id="app2"></div>
+    <div style="margin:20px;padding:20px;border:solid 5px red;" id="app3"></div>
+  </div>
 </body>
 
 </html>
