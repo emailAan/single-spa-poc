@@ -4,7 +4,8 @@
   "description": "A simple example of how to use webpack with single-spa",
   "scripts": {
     "watch": "webpack-dev-server --open",
-    "build": "webpack --config webpack.config.js -p"
+    "build": "webpack --config webpack.config.js -p",
+    "serve": "npm run build && cp dist/* public/ && node src/server.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
     "clean-webpack-plugin": "^0.1.16",
+    "express": "^4.16.3",
     "http-server": "^0.10.0",
     "ts-loader": "^2.3.2",
     "typescript": "^2.4.2",
@@ -45,6 +47,7 @@
     "single-spa": "^3.8.1",
     "single-spa-angular2": "^1.2.0",
     "single-spa-react": "^2.2.0",
+    "systemjs": "^0.21.4",
     "zone.js": "^0.8.16"
   }
 }
